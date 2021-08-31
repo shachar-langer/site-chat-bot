@@ -4,13 +4,21 @@
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
     "text": "hello world",
     "action": {
-      "type": "yes-no"
+      "type": "yes-no",
+      "attributes": {}
     }
   },
   {
     "time": "13:54",
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
-    "text": "hello world"
+    "text": "hello world",
+    "action": {
+      "type": "text-input",
+      "attributes": {
+        "inputLabel": "text field",
+        "placeholder": "Jane Doe"
+      }
+    }
   },
   {
     "time": "13:54",
