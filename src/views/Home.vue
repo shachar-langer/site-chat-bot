@@ -6,23 +6,37 @@
 
 <script>
 import Message from '@/components/Message.vue'
-import conversations from '../data/test_convo.json'
+import messages from '../data/test_convo.json'
 
 export default {
   components: { Message },
   data() {
     return {
-      messages: [conversations[0]],
+      messages: [messages[0]],
       step: 0
     }
   },
   methods: {
-    onYes() {
+    showNextMessage() {
+      // No more messages
+      if (messages.length === this.step + 1) {
+        return
+      }
+
       this.step = this.step + 1
-      this.messages.push(conversations[this.step])
+      const nextMessage = messages[this.step]
+      this.messages.push(nextMessage)
+
+      // Continue if message doesn't include an action
+      if (!nextMessage.action) {
+        this.showNextMessage()
+      }
+    },
+    onYes() {
+      this.showNextMessage()
     },
     onNo() {
-      alert('Thank you very much for using my website')
+      console.log('Thank you very much for using my website')
     }
   }
 }

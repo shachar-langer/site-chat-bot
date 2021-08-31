@@ -42,7 +42,7 @@ export default {
     },
     data() {
         return {
-            showAction: true
+            showAction: this.action && Object.keys(this.action).length !== 0
         }
     },
     methods: {
