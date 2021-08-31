@@ -3,9 +3,9 @@
         <div class="flex flex-row h-12 gap-1 items-end">
             <div class="text-xs">{{ time }}</div>
             <div class="w-12 h-12 relative">
-            <div class="w-full h-full rounded-full overflow-hidden">
-                <img :src="avatar" alt="lovely avatar" />
-            </div>
+                <div class="w-full h-full rounded-full overflow-hidden">
+                    <img :src="avatar" alt="lovely avatar" />
+                </div>
             </div>
             <div class="self-center rounded-full py-3 px-6 bg-purple-500 text-white">{{ text }}</div>
         </div>
