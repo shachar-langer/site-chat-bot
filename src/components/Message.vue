@@ -2,7 +2,7 @@
     <div v-if="!isAnswer" class="mt-4">
         <div class="flex flex-row min-h-12 gap-1 items-end">
             <div class="text-xs">{{ time }}</div>
-            <div class="w-12 h-12 relative">
+            <div v-if="avatar" class="w-12 h-12 relative">
                 <div class="w-full h-full rounded-full overflow-hidden">
                     <img :src="avatar" alt="lovely avatar" />
                 </div>
