@@ -1,13 +1,13 @@
 <template>
     <div v-if="!isAnswer" class="mt-4">
-        <div class="flex flex-row h-12 gap-1 items-end">
+        <div class="flex flex-row min-h-12 gap-1 items-end">
             <div class="text-xs">{{ time }}</div>
             <div class="w-12 h-12 relative">
                 <div class="w-full h-full rounded-full overflow-hidden">
                     <img :src="avatar" alt="lovely avatar" />
                 </div>
             </div>
-            <div class="self-center rounded-full py-3 px-6 bg-purple-500 text-white">{{ text }}</div>
+            <div class="self-center rounded-3xl py-3 px-6 bg-purple-500 text-white">{{ text }}</div>
         </div>
         <div v-if="showAction" class="mt-2 ml-20">
             <div v-if="action.type==='yes-no'" class="flex flex-row gap-1">
@@ -27,8 +27,8 @@
         </div>
     </div>
     <div v-else class="mt-4">
-        <div class="flex flex-row h-12 gap-1 items-end justify-end">
-            <div class="self-center rounded-full py-3 px-6 bg-white text-purple-500 border-purple-500 border-2">{{ text }}</div>
+        <div class="flex flex-row min-h-12 gap-1 items-end justify-end">
+            <div class="self-center rounded-3xl py-3 px-6 bg-white text-purple-500 border-purple-500 border-2 break-words max-w-80">{{ text }}</div>
             <div class="text-xs">{{ time }}</div>
         </div>
     </div>
@@ -94,3 +94,9 @@ export default {
     }
 }
 </script>
+
+<style lang="css" scoped>
+.max-w-80 {
+    max-width: 80%;
+}
+</style>
