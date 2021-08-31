@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-4">
+    <div v-if="!isAnswer" class="mt-4">
         <div class="flex flex-row h-12 gap-1 items-end">
             <div class="text-xs">{{ time }}</div>
             <div class="w-12 h-12 relative">
@@ -26,6 +26,12 @@
             </div>
         </div>
     </div>
+    <div v-else class="mt-4">
+        <div class="flex flex-row h-12 gap-1 items-end justify-end">
+            <div class="self-center rounded-full py-3 px-6 bg-white text-purple-500 border-purple-500 border-2">{{ text }}</div>
+            <div class="text-xs">{{ time }}</div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -37,7 +43,8 @@ export default {
         },
         avatar: {
             type: String,
-            required: true
+            required: false,
+            default: null
         },
         text: {
             type: String,
@@ -47,6 +54,11 @@ export default {
             type: Object,
             required: false,
             default: {}
+        },
+        isAnswer: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
     data() {

@@ -7,6 +7,7 @@
       :avatar="conversation.avatar"
       :text="conversation.text"
       :action="conversation.action"
+      :isAnswer="conversation.isAnswer || false"
       @yes="onYes"
       @no="onNo"
       @text-input="onTextInput"
@@ -27,7 +28,7 @@ export default {
     }
   },
   methods: {
-    showNextMessage() {
+    showNextStep() {
       // No more messages
       if (messages.length === this.step + 1) {
         return
@@ -39,18 +40,28 @@ export default {
 
       // Continue if message doesn't include an action
       if (!nextMessage.action) {
-        this.showNextMessage()
+        this.showNextStep()
       }
     },
+    showAnswer(text) {
+      const message = {
+        time: '14:00',
+        text,
+        isAnswer: true
+      }
+      this.messages.push(message)
+    },
     onYes() {
-      this.showNextMessage()
+      this.showAnswer('Yes.')
+      this.showNextStep()
     },
     onNo() {
+      this.showAnswer('No.')
       console.log('Thank you very much for using my website')
     },
     onTextInput(textInput) {
-      console.log(`The user entered ${textInput}`)
-      this.showNextMessage()
+      this.showAnswer(textInput)
+      this.showNextStep()
     }
   }
 }
