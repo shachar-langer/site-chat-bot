@@ -1,6 +1,16 @@
 <template>
   <div class="flex flex-col">
-    <Message v-for="(conversation,index) in messages" :key="index" :time="conversation.time" :avatar="conversation.avatar" :text="conversation.text" :action="conversation.action" @yes="onYes" @no="onNo"/>
+    <Message
+      v-for="(conversation,index) in messages"
+      :key="index"
+      :time="conversation.time"
+      :avatar="conversation.avatar"
+      :text="conversation.text"
+      :action="conversation.action"
+      @yes="onYes"
+      @no="onNo"
+      @text-input="onTextInput"
+    />
   </div>
 </template>
 
@@ -37,6 +47,10 @@ export default {
     },
     onNo() {
       console.log('Thank you very much for using my website')
+    },
+    onTextInput(textInput) {
+      console.log(`The user entered ${textInput}`)
+      this.showNextMessage()
     }
   }
 }
