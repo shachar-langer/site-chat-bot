@@ -8,7 +8,8 @@
         </div>
       </div>
       <div class="self-center rounded-3xl py-3 px-6 bg-purple-500 text-white">
-        {{ text }}
+        <span v-if="content.type === 'text'">{{contentAttributes.text}}</span>
+        <img v-else-if="content.type === 'image'" :src="imgURL" />
       </div>
     </div>
     <div v-if="showAction" class="mt-2 ml-20">
@@ -96,7 +97,8 @@
           max-w-80
         "
       >
-        {{ text }}
+        <span v-if="content.type === 'text'">{{contentAttributes.text}}</span>
+        <img v-else-if="content.type === 'image'" :src="imgURL" />
       </div>
       <div class="text-xs">{{ time }}</div>
     </div>
@@ -115,8 +117,8 @@ export default {
       required: false,
       default: null
     },
-    text: {
-      type: String,
+    content: {
+      type: Object,
       required: true
     },
     action: {
@@ -159,6 +161,13 @@ export default {
     },
     inputPlaceholder () {
       return this.actionAttributes.placeholder || ''
+    },
+    contentAttributes () {
+      return (this.content && this.content.attributes) || {}
+    },
+    imgURL () {
+      console.log(new URL(this.contentAttributes.src, import.meta.url))
+      return new URL(this.contentAttributes.src, import.meta.url)
     }
   }
 }

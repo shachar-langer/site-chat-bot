@@ -6,7 +6,7 @@
         :key="index"
         :time="conversation.time"
         :avatar="conversation.avatar"
-        :text="conversation.text"
+        :content="conversation.content"
         :action="conversation.action"
         :isAnswer="conversation.isAnswer || false"
         @yes="onYes"
@@ -55,7 +55,12 @@ export default {
     showAnswer (text) {
       const message = {
         time: this.getTime(),
-        text,
+        content: {
+          type: 'text',
+          attributes: {
+            text: 'hello world'
+          }
+        },
         isAnswer: true
       }
       this.messages.push(message)
