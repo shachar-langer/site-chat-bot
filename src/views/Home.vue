@@ -24,12 +24,18 @@ import messages from '../data/test_convo.json'
 export default {
   components: { Message },
   data () {
+    const firstMessage = messages[0]
+    firstMessage.time = this.getTime()
     return {
-      messages: [messages[0]],
+      messages: [firstMessage],
       step: 0
     }
   },
   methods: {
+    getTime () {
+      const date = new Date()
+      return `${date.getHours()}:${date.getMinutes()}`
+    },
     showNextStep () {
       // No more messages
       if (messages.length === this.step + 1) {
@@ -38,6 +44,7 @@ export default {
 
       this.step = this.step + 1
       const nextMessage = messages[this.step]
+      nextMessage.time = this.getTime()
       this.messages.push(nextMessage)
 
       // Continue if message doesn't include an action
@@ -47,7 +54,7 @@ export default {
     },
     showAnswer (text) {
       const message = {
-        time: '14:00',
+        time: this.getTime(),
         text,
         isAnswer: true
       }
