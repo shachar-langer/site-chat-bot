@@ -2,7 +2,7 @@
   <div class="grid place-items-center">
     <div class="flex flex-col w-full max-w-3xl">
       <Message
-        v-for="(conversation,index) in messages"
+        v-for="(conversation, index) in messages"
         :key="index"
         :time="conversation.time"
         :avatar="conversation.avatar"
@@ -23,14 +23,14 @@ import messages from '../data/test_convo.json'
 
 export default {
   components: { Message },
-  data() {
+  data () {
     return {
       messages: [messages[0]],
       step: 0
     }
   },
   methods: {
-    showNextStep() {
+    showNextStep () {
       // No more messages
       if (messages.length === this.step + 1) {
         return
@@ -45,7 +45,7 @@ export default {
         this.showNextStep()
       }
     },
-    showAnswer(text) {
+    showAnswer (text) {
       const message = {
         time: '14:00',
         text,
@@ -53,15 +53,15 @@ export default {
       }
       this.messages.push(message)
     },
-    onYes() {
+    onYes () {
       this.showAnswer('Yes.')
       this.showNextStep()
     },
-    onNo() {
+    onNo () {
       this.showAnswer('No.')
       console.log('Thank you very much for using my website')
     },
-    onTextInput(textInput) {
+    onTextInput (textInput) {
       this.showAnswer(textInput)
       this.showNextStep()
     }
