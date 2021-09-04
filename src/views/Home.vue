@@ -1,17 +1,19 @@
 <template>
-  <div class="flex flex-col">
-    <Message
-      v-for="(conversation,index) in messages"
-      :key="index"
-      :time="conversation.time"
-      :avatar="conversation.avatar"
-      :text="conversation.text"
-      :action="conversation.action"
-      :isAnswer="conversation.isAnswer || false"
-      @yes="onYes"
-      @no="onNo"
-      @text-input="onTextInput"
-    />
+  <div class="grid place-items-center">
+    <div class="flex flex-col w-full max-w-3xl">
+      <Message
+        v-for="(conversation,index) in messages"
+        :key="index"
+        :time="conversation.time"
+        :avatar="conversation.avatar"
+        :text="conversation.text"
+        :action="conversation.action"
+        :isAnswer="conversation.isAnswer || false"
+        @yes="onYes"
+        @no="onNo"
+        @text-input="onTextInput"
+      />
+    </div>
   </div>
 </template>
 
