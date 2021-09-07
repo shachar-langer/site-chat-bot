@@ -58,7 +58,7 @@ export default {
         content: {
           type: 'text',
           attributes: {
-            text: 'hello world'
+            text
           }
         },
         isAnswer: true

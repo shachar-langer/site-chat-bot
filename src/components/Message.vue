@@ -9,7 +9,7 @@
       </div>
       <div class="self-center rounded-3xl py-3 px-6 bg-purple-500 text-white">
         <span v-if="content.type === 'text'">{{contentAttributes.text}}</span>
-        <img v-else-if="content.type === 'image'" :src="imgURL" />
+        <img v-else-if="content.type === 'image'" :src="imgURL" class="content-image" />
       </div>
     </div>
     <div v-if="showAction" class="mt-2 ml-20">
@@ -98,7 +98,7 @@
         "
       >
         <span v-if="content.type === 'text'">{{contentAttributes.text}}</span>
-        <img v-else-if="content.type === 'image'" :src="imgURL" />
+        <img v-else-if="content.type === 'image'" :src="imgURL" class="content-image" />
       </div>
       <div class="text-xs">{{ time }}</div>
     </div>
@@ -106,6 +106,9 @@
 </template>
 
 <script>
+
+const allImages = import.meta.glob('../data/images/*.jpg')
+
 export default {
   props: {
     time: {
@@ -135,7 +138,14 @@ export default {
   data () {
     return {
       showAction: this.action && Object.keys(this.action).length !== 0,
-      textInput: ''
+      textInput: '',
+      imgURL: null
+    }
+  },
+  mounted () {
+    if ('fileName' in this.contentAttributes) {
+      const imagePath = `../data/images/${this.contentAttributes.fileName}`
+      return allImages[imagePath]().then(mod => { this.imgURL = mod.default })
     }
   },
   methods: {
@@ -164,10 +174,6 @@ export default {
     },
     contentAttributes () {
       return (this.content && this.content.attributes) || {}
-    },
-    imgURL () {
-      console.log(new URL(this.contentAttributes.src, import.meta.url))
-      return new URL(this.contentAttributes.src, import.meta.url)
     }
   }
 }
@@ -176,5 +182,10 @@ export default {
 <style lang="css" scoped>
 .max-w-80 {
   max-width: 80%;
+}
+
+.content-image {
+  max-height: 300px;
+  max-width: 300px;
 }
 </style>
