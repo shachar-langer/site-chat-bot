@@ -1,17 +1,25 @@
 [
   {
-    "time": "13:54",
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
-    "text": "hello world",
+    "content": {
+      "type": "image",
+      "attributes": {
+        "fileName": "profile.jpg"
+      }
+    },
     "action": {
       "type": "yes-no",
       "attributes": {}
     }
   },
   {
-    "time": "13:54",
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
-    "text": "hello world",
+    "content": {
+      "type": "text",
+      "attributes": {
+        "text": "hello world"
+      }
+    },
     "action": {
       "type": "text-input",
       "attributes": {
@@ -21,13 +29,21 @@
     }
   },
   {
-    "time": "13:54",
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
-    "text": "hello world"
+    "content": {
+      "type": "text",
+      "attributes": {
+        "text": "hello world"
+      }
+    }
   },
   {
-    "time": "13:54",
     "avatar": "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png",
-    "text": "hello world"
+    "content": {
+      "type": "text",
+      "attributes": {
+        "text": "hello world"
+      }
+    }
   }
 ]

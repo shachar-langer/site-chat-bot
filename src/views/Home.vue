@@ -1,17 +1,19 @@
 <template>
-  <div class="flex flex-col">
-    <Message
-      v-for="(conversation,index) in messages"
-      :key="index"
-      :time="conversation.time"
-      :avatar="conversation.avatar"
-      :text="conversation.text"
-      :action="conversation.action"
-      :isAnswer="conversation.isAnswer || false"
-      @yes="onYes"
-      @no="onNo"
-      @text-input="onTextInput"
-    />
+  <div class="grid place-items-center">
+    <div class="flex flex-col w-full max-w-3xl">
+      <Message
+        v-for="(conversation, index) in messages"
+        :key="index"
+        :time="conversation.time"
+        :avatar="conversation.avatar"
+        :content="conversation.content"
+        :action="conversation.action"
+        :isAnswer="conversation.isAnswer || false"
+        @yes="onYes"
+        @no="onNo"
+        @text-input="onTextInput"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,14 +23,20 @@ import messages from '../data/test_convo.json'
 
 export default {
   components: { Message },
-  data() {
+  data () {
+    const firstMessage = messages[0]
+    firstMessage.time = this.getTime()
     return {
-      messages: [messages[0]],
+      messages: [firstMessage],
       step: 0
     }
   },
   methods: {
-    showNextStep() {
+    getTime () {
+      const date = new Date()
+      return `${date.getHours()}:${date.getMinutes()}`
+    },
+    showNextStep () {
       // No more messages
       if (messages.length === this.step + 1) {
         return
@@ -36,6 +44,7 @@ export default {
 
       this.step = this.step + 1
       const nextMessage = messages[this.step]
+      nextMessage.time = this.getTime()
       this.messages.push(nextMessage)
 
       // Continue if message doesn't include an action
@@ -43,23 +52,28 @@ export default {
         this.showNextStep()
       }
     },
-    showAnswer(text) {
+    showAnswer (text) {
       const message = {
-        time: '14:00',
-        text,
+        time: this.getTime(),
+        content: {
+          type: 'text',
+          attributes: {
+            text
+          }
+        },
         isAnswer: true
       }
       this.messages.push(message)
     },
-    onYes() {
+    onYes () {
       this.showAnswer('Yes.')
       this.showNextStep()
     },
-    onNo() {
+    onNo () {
       this.showAnswer('No.')
       console.log('Thank you very much for using my website')
     },
-    onTextInput(textInput) {
+    onTextInput (textInput) {
       this.showAnswer(textInput)
       this.showNextStep()
     }
