@@ -29,7 +29,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.17.0",
-    "tailwindcss": "^2.2.11",
+    "tailwindcss": "^2.2.14",
     "vite": "^2.5.4"
   }
 }
