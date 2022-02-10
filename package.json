@@ -30,6 +30,6 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.17.0",
     "tailwindcss": "^2.2.11",
-    "vite": "^2.5.4"
+    "vite": "^2.8.0"
   }
 }
